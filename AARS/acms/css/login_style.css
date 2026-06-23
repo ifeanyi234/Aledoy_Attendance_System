@@ -1,0 +1,78 @@
+body{
+  background-color: #FFF0E5;
+  font-family: sans-serif;
+}
+p{
+  margin: 0;
+}
+.container{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-body {
+  background-color: #FFFFFF;
+  border: solid 1px #10162F;
+  width: clamp(300px, 50%, 600px);
+  padding: 16px 24px;
+  line-height: 24px;
+  transition: 0.2s ease-in-out;
+  color: rgb(16, 22, 47);
+}
+.content-body:hover{
+  transform: translate(5px, -5px);
+  box-shadow: -10px 10px #10162f;
+}
+.big-font{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.small-font{
+  font-size: 14px;
+}
+.form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+input{
+  outline: none;
+}
+input[type="text"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #10162F;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover {
+  background-color: #1a223f;
+}

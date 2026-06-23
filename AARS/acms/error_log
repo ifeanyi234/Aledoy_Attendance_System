@@ -1,0 +1,159 @@
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $username_err in /home/silversh/public_html/acms/index.php on line 26
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $password_err in /home/silversh/public_html/acms/index.php on line 29
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $passwordlength_err in /home/silversh/public_html/acms/index.php on line 32
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/index.php on line 35
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $username in /home/silversh/public_html/acms/index.php on line 39
+[27-Dec-2025 20:38:58 UTC] PHP Warning:  Undefined variable $password in /home/silversh/public_html/acms/index.php on line 42
+[27-Dec-2025 21:39:21 Africa/Lagos] PHP Warning:  Undefined array key "username" in /home/silversh/public_html/acms/proc-login.php on line 5
+[27-Dec-2025 21:39:21 Africa/Lagos] PHP Warning:  Undefined array key "password" in /home/silversh/public_html/acms/proc-login.php on line 6
+[27-Dec-2025 21:39:21 Africa/Lagos] PHP Warning:  Undefined variable $password_err in /home/silversh/public_html/acms/index.php on line 29
+[27-Dec-2025 21:39:21 Africa/Lagos] PHP Warning:  Undefined variable $passwordlength_err in /home/silversh/public_html/acms/index.php on line 32
+[27-Dec-2025 21:39:21 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/index.php on line 35
+[27-Dec-2025 21:40:00 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/jobs.php on line 192
+[27-Dec-2025 21:40:00 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/jobs.php on line 193
+[27-Dec-2025 21:40:05 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:40:05 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 21:42:57 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:43:16 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:43:19 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:44:32 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:44:32 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 21:44:36 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:44:38 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 21:44:38 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add_blog.php on line 183
+[27-Dec-2025 21:44:38 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add_blog.php on line 217
+[27-Dec-2025 21:44:38 Africa/Lagos] PHP Warning:  Undefined variable $content in /home/silversh/public_html/acms/add_blog.php on line 222
+[27-Dec-2025 21:46:18 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/proc-add-blog.php on line 10
+[27-Dec-2025 21:46:18 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 21:46:35 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:46:35 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:47:18 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:48:29 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:48:29 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:48:32 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:48:47 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:48:52 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:49:06 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:52:09 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 21:52:09 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add_blog.php on line 183
+[27-Dec-2025 21:52:09 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add_blog.php on line 217
+[27-Dec-2025 21:52:09 Africa/Lagos] PHP Warning:  Undefined variable $content in /home/silversh/public_html/acms/add_blog.php on line 222
+[27-Dec-2025 21:57:43 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/proc-add-blog.php on line 10
+[27-Dec-2025 21:57:43 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 21:58:00 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:58:00 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:58:03 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:58:18 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:58:23 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:58:38 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 21:58:42 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 21:58:58 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 21:59:26 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 21:59:26 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add_blog.php on line 183
+[27-Dec-2025 21:59:26 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add_blog.php on line 217
+[27-Dec-2025 21:59:26 Africa/Lagos] PHP Warning:  Undefined variable $content in /home/silversh/public_html/acms/add_blog.php on line 222
+[27-Dec-2025 22:01:20 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/proc-add-blog.php on line 10
+[27-Dec-2025 22:01:20 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 22:01:43 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 22:01:43 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 22:01:46 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 22:01:52 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/edit-blog.php on line 192
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/edit-blog.php on line 193
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined variable $category_name in /home/silversh/public_html/acms/edit-blog.php on line 227
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 228
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/edit-blog.php on line 234
+[27-Dec-2025 22:01:58 Africa/Lagos] PHP Warning:  Undefined array key "id" in /home/silversh/public_html/acms/edit-blog.php on line 235
+[27-Dec-2025 22:02:26 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 22:03:09 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/blog.php on line 192
+[27-Dec-2025 22:03:09 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/blog.php on line 193
+[27-Dec-2025 22:03:12 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 22:03:12 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add_blog.php on line 183
+[27-Dec-2025 22:03:12 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add_blog.php on line 217
+[27-Dec-2025 22:03:12 Africa/Lagos] PHP Warning:  Undefined variable $content in /home/silversh/public_html/acms/add_blog.php on line 222
+[27-Dec-2025 22:04:35 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/proc-add-blog.php on line 10
+[27-Dec-2025 22:04:35 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 22:06:44 Africa/Lagos] PHP Warning:  Undefined variable $name in /home/silversh/public_html/acms/proc-add-blog.php on line 10
+[27-Dec-2025 22:06:44 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add_blog.php on line 182
+[27-Dec-2025 22:10:18 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/jobs.php on line 192
+[27-Dec-2025 22:10:18 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/jobs.php on line 193
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add-jobs.php on line 182
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add-jobs.php on line 183
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add-jobs.php on line 200
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $state in /home/silversh/public_html/acms/add-jobs.php on line 206
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $country in /home/silversh/public_html/acms/add-jobs.php on line 212
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $location in /home/silversh/public_html/acms/add-jobs.php on line 218
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $job_type in /home/silversh/public_html/acms/add-jobs.php on line 224
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $salary in /home/silversh/public_html/acms/add-jobs.php on line 230
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $deadline in /home/silversh/public_html/acms/add-jobs.php on line 236
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $job_url in /home/silversh/public_html/acms/add-jobs.php on line 242
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $qualification in /home/silversh/public_html/acms/add-jobs.php on line 248
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $experience in /home/silversh/public_html/acms/add-jobs.php on line 258
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $description in /home/silversh/public_html/acms/add-jobs.php on line 268
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $skills in /home/silversh/public_html/acms/add-jobs.php on line 278
+[27-Dec-2025 22:10:54 Africa/Lagos] PHP Warning:  Undefined variable $responsibilities in /home/silversh/public_html/acms/add-jobs.php on line 288
+[27-Dec-2025 22:15:56 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add-jobs.php on line 183
+[27-Dec-2025 22:16:31 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add-jobs.php on line 183
+[27-Dec-2025 22:16:58 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add-jobs.php on line 183
+[27-Dec-2025 22:17:18 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/jobs.php on line 192
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/add-jobs.php on line 182
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $success in /home/silversh/public_html/acms/add-jobs.php on line 183
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $title in /home/silversh/public_html/acms/add-jobs.php on line 200
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $state in /home/silversh/public_html/acms/add-jobs.php on line 206
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $country in /home/silversh/public_html/acms/add-jobs.php on line 212
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $location in /home/silversh/public_html/acms/add-jobs.php on line 218
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $job_type in /home/silversh/public_html/acms/add-jobs.php on line 224
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $salary in /home/silversh/public_html/acms/add-jobs.php on line 230
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $deadline in /home/silversh/public_html/acms/add-jobs.php on line 236
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $job_url in /home/silversh/public_html/acms/add-jobs.php on line 242
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $qualification in /home/silversh/public_html/acms/add-jobs.php on line 248
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $experience in /home/silversh/public_html/acms/add-jobs.php on line 258
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $description in /home/silversh/public_html/acms/add-jobs.php on line 268
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $skills in /home/silversh/public_html/acms/add-jobs.php on line 278
+[27-Dec-2025 22:26:52 Africa/Lagos] PHP Warning:  Undefined variable $responsibilities in /home/silversh/public_html/acms/add-jobs.php on line 288
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $username_err in /home/silversh/public_html/acms/index.php on line 26
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $password_err in /home/silversh/public_html/acms/index.php on line 29
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $passwordlength_err in /home/silversh/public_html/acms/index.php on line 32
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $error in /home/silversh/public_html/acms/index.php on line 35
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $username in /home/silversh/public_html/acms/index.php on line 39
+[06-Jan-2026 13:42:52 UTC] PHP Warning:  Undefined variable $password in /home/silversh/public_html/acms/index.php on line 42
