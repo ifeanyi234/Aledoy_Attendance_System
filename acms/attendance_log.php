@@ -96,7 +96,7 @@ $result = mysqli_query($db, $query);
                             <ol class="breadcrumb ms-auto">
                                 <li><a href="#" class="fw-normal"></a></li>
                             </ol>
-                            <a href="clock_in.php" class="btn btn-success d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                            <a href="kiosk.php" class="btn btn-success d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
                                 Open Clock-In Portal
                             </a>
                         </div>
