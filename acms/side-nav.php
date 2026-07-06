@@ -1,4 +1,4 @@
-<nav class="sidebar-nav" style ="margin-top: 50px;">
+<nav class="sidebar-nav">
     <ul id="sidebarnav">
         <li class="sidebar-item pt-2">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.php" aria-expanded="false">
@@ -13,14 +13,14 @@
                 <span class="hide-menu">Staff List</span>
             </a>
         </li>
-
+<?php if(isset($_SESSION['user_role']) && (int)$_SESSION['user_role'] === 1): ?>
         <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="new_staff.php" aria-expanded="false">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 <span class="hide-menu">New Staff</span>
             </a>
         </li>
-
+<?php endif; ?>
         <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="attendance_log.php" aria-expanded="false">
                 <i class="fa fa-calendar-check" aria-hidden="true"></i>
@@ -28,12 +28,14 @@
             </a>
         </li>
 
-        <li class="sidebar-item">
-            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="reports.php" aria-expanded="false">
-                <i class="fa fa-chart-bar" aria-hidden="true"></i>
-                <span class="hide-menu">Report</span>
-            </a>
-        </li>
+        <?php if(isset($_SESSION['user_role']) && (int)$_SESSION['user_role'] === 1): ?>
+<li class="sidebar-item">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users_list.php" aria-expanded="false">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span class="hide-menu">Manage Admins / Staff</span>
+    </a>
+</li>
+<?php endif; ?>
        
         <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="change-password.php" aria-expanded="false">

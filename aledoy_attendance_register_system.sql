@@ -58,7 +58,7 @@ CREATE TABLE `staff` (
   `lastname` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `phone` varchar(20) NOT NULL DEFAULT 'NULL',
-  `staff_type` enum('main','academy','occasional') NOT NULL,
+  `staff_type` enum('main','academy','part-time') NOT NULL,
   `course` varchar(100) NOT NULL DEFAULT 'NULL',
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,8 +68,8 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `staff_id`, `firstname`, `lastname`, `email`, `phone`, `staff_type`, `course`, `date_created`) VALUES
-(1, 'ALS-2026-017', 'Ifeanyi', 'Ezeh', 'ei711283@gmail.com', '+2347043277337', 'occasional', 'PHP development', '0000-00-00 00:00:00'),
-(2, 'ALS-2026-67', 'Chima', 'Oko', 'Juliusokochima@gmail.com', '+2348027111185', 'occasional', 'Frontend Development', '2026-06-23 00:00:00');
+(1, 'ALS-2026-017', 'Ifeanyi', 'Ezeh', 'ei711283@gmail.com', '+2347043277337', 'part-time', 'PHP development', '0000-00-00 00:00:00'),
+(2, 'ALS-2026-67', 'Chima', 'Oko', 'Juliusokochima@gmail.com', '+2348027111185', 'part-time', 'Frontend Development', '2026-06-23 00:00:00');
 
 -- --------------------------------------------------------
 

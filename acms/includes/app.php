@@ -209,8 +209,8 @@ function createStaff(PDO $pdo, array $data): array
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Email must be a valid email address.';
     }
-    if (!in_array($staffType, ['main', 'academy', 'occasional'], true)) {
-        $errors[] = 'Staff type must be main, academy, or occasional.';
+    if (!in_array($staffType, ['main', 'academy', 'part-time'], true)) {
+        $errors[] = 'Staff type must be main, academy, or part-time.';
     }
 
     if ($errors !== []) {
@@ -297,7 +297,7 @@ function renderStaffTypeBadge(string $staffType): string
     return match ($staffType) {
         'main' => '<span class="badge bg-primary">Main</span>',
         'academy' => '<span class="badge bg-success">Academy</span>',
-        'occasional' => '<span class="badge bg-warning text-dark">Occasional</span>',
+        'part-time' => '<span class="badge bg-warning text-dark">part-time</span>',
         default => '<span class="badge bg-secondary">' . htmlspecialchars($staffType, ENT_QUOTES, 'UTF-8') . '</span>',
     };
 }
