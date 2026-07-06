@@ -6,9 +6,9 @@ ob_start();
 date_default_timezone_set('Africa/Lagos'); 
 
 $servername = "localhost";
-$databaseUsername = "aledoy_attendance_register_system";
-$databasePassword = "attendance_"; // using local XAMPP default
-$database = "aledoy_attendance_register_system";
+$databaseUsername = "aledusbx_attendance";
+$databasePassword = "Aledoy@2026!"; // using local XAMPP default
+$database = "aledusbx_attendance";
 
 $db = mysqli_connect($servername, $databaseUsername, $databasePassword, $database) or die('Database Connection Failed: ' . mysqli_connect_error());
 
