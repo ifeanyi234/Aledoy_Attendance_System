@@ -171,7 +171,7 @@ if (isset($_SESSION['attendance_success'])) {
             </div>
         <?php endif; ?>
         
-        <form action="proc-kiosk.php" method="POST" <?php  if($_SERVER['HTT_HOST'] != 'aledoy.com') { echo 'id="kioskForm"'; } ?>>
+        <form action="proc-kiosk.php" method="POST" <?php  if($_SERVER['HTTP_HOST'] != 'aledoy.com') { echo 'id="kioskForm"'; } ?>>
             
             <div class="status-toggle-group">
                 <div class="status-option">
