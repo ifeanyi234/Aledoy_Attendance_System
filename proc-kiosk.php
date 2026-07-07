@@ -6,13 +6,18 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once 'acms/connection/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     $staff_id = isset($_POST['staff_id']) ? mysqli_real_escape_string($db, trim($_POST['staff_id'])) : '';
     $status   = isset($_POST['status']) ? mysqli_real_escape_string($db, trim($_POST['status'])) : 'check-in';
 
     if (!in_array($status, ['check-in', 'check-out'])) {
         $status = 'check-in';
     }
+
+    if($_POST['txt_staff_id'])
+        {
+            $staff_id = mysqli_real_escape_string($db, trim($_POST['txt_staff_id']));
+        }
 
     if (empty($staff_id)) {
         $_SESSION['attendance_error'] = "Scan error: No valid ID data detected.";
