@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/acms/connection/connect.php';
+require_once 'acms/connection/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     

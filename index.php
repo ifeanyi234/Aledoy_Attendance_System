@@ -30,9 +30,9 @@ if (isset($_SESSION['attendance_success'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../attendsystem.css">
-    <link rel="icon" href="../Images/icon.png" type="image/x-icon">
-    <title>Attendance Aledoy Terminal</title>
+    <link rel="stylesheet" href="attendsystem.css">
+    <link rel="icon" href="images/icon.png" type="image/x-icon">
+    <title>Aledoy :: Attendance Terminal</title>
     
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
 
@@ -159,7 +159,7 @@ if (isset($_SESSION['attendance_success'])) {
 
     <div class="form-container">
         <div class="logo-badge">
-            <img src="../Images/images-removebg-preview.png" alt="Company Logo" class="company-logo">
+            <img src="images/images-removebg-preview.png" alt="Company Logo" class="company-logo">
         </div>
         
         <h2 style="color: #333; margin-bottom: 0.5rem;">QR Attendance Terminal</h2> 
@@ -171,7 +171,7 @@ if (isset($_SESSION['attendance_success'])) {
             </div>
         <?php endif; ?>
         
-        <form action="proc-kiosk.php" method="POST" id="kioskForm">
+        <form action="proc-kiosk.php" method="POST" <?php  if($_SERVER['HTT_HOST'] != 'aledoy.com') { echo 'id="kioskForm"'; } ?>>
             
             <div class="status-toggle-group">
                 <div class="status-option">
@@ -191,7 +191,7 @@ if (isset($_SESSION['attendance_success'])) {
             <div class="manual-entry-box">
                 <div style="color: #888; margin-bottom: 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">— Or Enter Manually —</div>
                 <div class="manual-input-container">
-                    <input type="text" id="manual_staff_id" class="manual-input" placeholder="Type Staff ID here...">
+                    <input type="text" id="manual_staff_id" class="manual-input" placeholder="Type Staff ID here..." autofocus>
                     <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
                 </div>
             </div>
