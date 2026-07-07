@@ -34,9 +34,7 @@ if (isset($_SESSION['attendance_success'])) {
     <link rel="icon" href="images/icon.png" type="image/x-icon">
     <title>Aledoy :: Attendance Terminal 2</title>
     
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
-
-    </script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
     <style>
         body {
