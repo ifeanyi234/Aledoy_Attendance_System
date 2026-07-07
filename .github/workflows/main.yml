@@ -44,9 +44,9 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Deploy entire PHP app to Shared Hosting
-        run: |
-          lftp -e "set ftp:ssl-allow no; open -u ${{ secrets.CPANEL_USERNAME }},${{ secrets.CPANEL_PASSWORD }} ${{ secrets.CPANEL_HOST }}; mirror -R . /attendance; exit"
+      #- name: Deploy entire PHP app to Shared Hosting
+      #  run: |
+      #    lftp -e "set ftp:ssl-allow no; open -u ${{ secrets.CPANEL_USERNAME }},${{ secrets.CPANEL_PASSWORD }} ${{ secrets.CPANEL_HOST }}; mirror -R . /attendance; exit"
 
       - name: Deploy changed files to Shared Hosting
         run: |
