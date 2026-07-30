@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (kioskForm && readerElem && typeof Html5Qrcode !== "undefined") {
     const html5QrCode = new Html5Qrcode("reader");
     const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
+    let isCameraScanning = false; // State tracker to prevent crashing when camera is inactive
 
     // Web Audio API Tones
     function triggerAudioNotification(statusTone) {
@@ -156,15 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const hiddenField = document.getElementById("hidden_staff_id");
       if (hiddenField) hiddenField.value = cleanId;
 
-      html5QrCode
-        .stop()
-        .then(() => {
-          kioskForm.submit();
-        })
-        .catch((err) => {
-          console.warn("Camera pipeline closure bypass executed: ", err);
-          kioskForm.submit();
-        });
+      // Only stop camera if it was actually running; otherwise submit immediately
+      if (isCameraScanning) {
+        html5QrCode
+          .stop()
+          .then(() => {
+            isCameraScanning = false;
+            kioskForm.submit();
+          })
+          .catch((err) => {
+            console.warn("Camera pipeline closure bypass executed: ", err);
+            kioskForm.submit();
+          });
+      } else {
+        kioskForm.submit();
+      }
     }
 
     function onScanSuccess(decodedText) {
@@ -189,22 +196,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Initialize Camera Pipeline
+    // Initialize Camera Pipeline with fallbacks
     function startCameraPipeline() {
       html5QrCode
         .start({ facingMode: "user" }, qrConfig, onScanSuccess)
+        .then(() => {
+          isCameraScanning = true;
+        })
         .catch((err) => {
-          console.error(
-            "Unable to bind camera authorization tracking context stream: ",
-            err,
-          );
-          const readerDiv = document.getElementById("reader");
-          if (readerDiv) {
-            readerDiv.innerHTML =
-              `<div style="padding:20px; color:#721c24; background:#f8d7da; font-size:0.85rem;">` +
-              `❌ Camera initialization error. Check browser security exceptions or configuration blocks.` +
-              `</div>`;
-          }
+          // Fallback attempt without facingMode restriction (fixes desktop webcam issues)
+          html5QrCode
+            .start({ facingMode: "environment" }, qrConfig, onScanSuccess)
+            .then(() => {
+              isCameraScanning = true;
+            })
+            .catch((fallbackErr) => {
+              isCameraScanning = false;
+              console.error("Camera authorization failed: ", fallbackErr);
+              const readerDiv = document.getElementById("reader");
+              if (readerDiv) {
+                readerDiv.innerHTML =
+                  `<div style="padding:20px; color:#721c24; background:#f8d7da; font-size:0.85rem;">` +
+                  `📷 Camera not detected or blocked by browser permission. Use manual entry below.` +
+                  `</div>`;
+              }
+            });
         });
     }
 
