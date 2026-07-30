@@ -32,7 +32,7 @@ if (isset($_SESSION['attendance_success'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="attendsystem.css">
     <link rel="icon" href="images/icon.png" type="image/x-icon">
-    <title>Aledoy :: Attendance Terminal 3</title>
+    <title>Aledoy :: Attendance Terminal</title>
     
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
@@ -205,5 +205,10 @@ if (isset($_SESSION['attendance_success'])) {
     </div>
 
     <script src="acms-core.js"></script>
+    <!-- Self-hosted scanner library (completely bypasses CSP rules) -->
+    <script src="html5-qrcode.min.js"></script>
+
+    <!-- Core ACMS application logic -->
+    <script src="acms-core.js?v=1.0.1"></script>
 </body>
 </html>
