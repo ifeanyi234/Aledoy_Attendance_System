@@ -197,31 +197,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initialize Camera Pipeline with fallbacks
+    // Universal Camera Pipeline (Works on Laptops, Desktops, & Mobile)
     function startCameraPipeline() {
-      html5QrCode
-        .start({ facingMode: "user" }, qrConfig, onScanSuccess)
-        .then(() => {
-          isCameraScanning = true;
+      Html5Qrcode.getCameras()
+        .then((devices) => {
+          if (devices && devices.length > 0) {
+            // Grab the first available camera device (Built-in Webcam / Phone Camera)
+            const cameraId = devices[0].id;
+
+            html5QrCode
+              .start(cameraId, qrConfig, onScanSuccess)
+              .then(() => {
+                isCameraScanning = true;
+              })
+              .catch((err) => {
+                console.error("Camera start error:", err);
+                isCameraScanning = false;
+                showCameraFallback(
+                  "📷 Unable to initialize camera hardware. Use manual entry below.",
+                );
+              });
+          } else {
+            showCameraFallback(
+              "📷 No webcam or camera device found on this system.",
+            );
+          }
         })
         .catch((err) => {
-          // Fallback attempt without facingMode restriction (fixes desktop webcam issues)
+          console.warn(
+            "Device enumeration restricted, trying fallback constraint...",
+            err,
+          );
+          // Fallback attempt if browser restricts device enumeration before prompt
           html5QrCode
-            .start({ facingMode: "environment" }, qrConfig, onScanSuccess)
+            .start({ facingMode: "user" }, qrConfig, onScanSuccess)
             .then(() => {
               isCameraScanning = true;
             })
             .catch((fallbackErr) => {
               isCameraScanning = false;
               console.error("Camera authorization failed: ", fallbackErr);
-              const readerDiv = document.getElementById("reader");
-              if (readerDiv) {
-                readerDiv.innerHTML =
-                  `<div style="padding:20px; color:#721c24; background:#f8d7da; font-size:0.85rem;">` +
-                  `📷 Camera not detected or blocked by browser permission. Use manual entry below.` +
-                  `</div>`;
-              }
+              showCameraFallback(
+                "📷 Camera access denied or blocked by browser. Use manual entry below.",
+              );
             });
         });
+    }
+
+    function showCameraFallback(messageText) {
+      const readerDiv = document.getElementById("reader");
+      if (readerDiv) {
+        readerDiv.innerHTML =
+          `<div style="padding:20px; color:#721c24; background:#f8d7da; font-size:0.85rem;">` +
+          `${messageText}` +
+          `</div>`;
+      }
     }
 
     if (alertBox) {
