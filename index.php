@@ -25,6 +25,10 @@ if (isset($_SESSION['attendance_success'])) {
     unset($_SESSION['attendance_error']);
 }
 ?>
+<?php
+// Override server-level security policy to allow camera on this domain
+header("Permissions-Policy: camera=(self)");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +36,7 @@ if (isset($_SESSION['attendance_success'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="attendsystem.css">
     <link rel="icon" href="images/icon.png" type="image/x-icon">
-    <title>Aledoy :: Attendance Terminal</title>
+    <title>Aledoy :: Attendance Terminal 1</title>
     
     <!-- <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script> -->
 
