@@ -3,6 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Override server-level security policy before ANY output is generated
+header("Permissions-Policy: camera=(self), camera=*");
+header("Feature-Policy: camera 'self' *");
+
 require_once __DIR__ . '/acms/connection/connect.php';
 
 // Set timezone to ensure accurate local time detection
@@ -25,10 +29,6 @@ if (isset($_SESSION['attendance_success'])) {
     unset($_SESSION['attendance_error']);
 }
 ?>
-<?php
-// Override server-level security policy to allow camera on this domain
-header("Permissions-Policy: camera=(self)");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +36,7 @@ header("Permissions-Policy: camera=(self)");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="attendsystem.css">
     <link rel="icon" href="images/icon.png" type="image/x-icon">
-    <title>Aledoy :: Attendance Terminal 1</title>
-    
-    <!-- <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script> -->
+    <title>Aledoy :: Attendance Terminal 2</title>
 
     <style>
         body {
@@ -196,7 +194,7 @@ header("Permissions-Policy: camera=(self)");
                 <div style="color: #888; margin-bottom: 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">— Or Enter Manually —</div>
                 <div class="manual-input-container">
                     <input type="text" id="manual_staff_id" name="txt_staff_id" class="manual-input" placeholder="Type Staff ID here..." autofocus>
-                   <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
+                    <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
                 </div>
             </div>
             
@@ -208,11 +206,10 @@ header("Permissions-Policy: camera=(self)");
         </p>
     </div>
 
-    <script src="acms-core.js"></script>
-    <!-- Self-hosted scanner library (completely bypasses CSP rules) -->
+    <!-- 1. Self-hosted scanner library loaded FIRST -->
     <script src="html5-qrcode.min.js"></script>
 
-    <!-- Core ACMS application logic -->
-    <script src="acms-core.js?v=1.0.1"></script>
+    <!-- 2. Application logic loaded SECOND -->
+    <script src="acms-core.js?v=1.0.2"></script>
 </body>
 </html>
