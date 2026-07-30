@@ -183,19 +183,19 @@ $result = mysqli_query($db, $query);
                                                     <div class="btn-group gap-2" role="group">
                                                         <!-- Privilege Toggle Control Trigger -->
                                                         <a href="users_list.php?action=toggle&id=<?php echo $row['id']; ?>" 
-                                                           class="btn btn-sm <?php echo $toggle_btn_class; ?> d-inline-flex align-items-center"
-                                                           title="<?php echo $toggle_title; ?>"
-                                                           <?php if($is_row_self) echo 'style="pointer-events: none; opacity: 0.5;" disabled'; ?>
-                                                           onclick="return confirm('Are you sure you want to change the authorization permissions for this account?');">
+                                                            class="btn btn-sm <?php echo $toggle_btn_class; ?> d-inline-flex align-items-center delete-action-btn"
+                                                            title="<?php echo $toggle_title; ?>"
+                                                            data-confirm="Are you sure you want to change the authorization permissions for this account?"
+                                                            <?php if($is_row_self) echo 'style="pointer-events: none; opacity: 0.5;" disabled'; ?>>
                                                             <i class="fa <?php echo $toggle_icon; ?> me-1"></i> Role
                                                         </a>
                                                         
                                                         <!-- System Access Revocation Control Trigger -->
                                                         <a href="users_list.php?action=delete&id=<?php echo $row['id']; ?>" 
-                                                           class="btn btn-sm btn-outline-danger d-inline-flex align-items-center" 
-                                                           title="Revoke System Access"
-                                                           <?php if($is_row_self) echo 'style="pointer-events: none; opacity: 0.5;" disabled'; ?>
-                                                           onclick="return confirm('CRITICAL WARNING: Are you sure you want to permanently erase this user\'s dashboard login privileges? This action cannot be undone.');">
+                                                            class="btn btn-sm btn-outline-danger d-inline-flex align-items-center delete-action-btn" 
+                                                            title="Revoke System Access"
+                                                            data-confirm="CRITICAL WARNING: Are you sure you want to permanently erase this user's dashboard login privileges? This action cannot be undone."
+                                                            <?php if($is_row_self) echo 'style="pointer-events: none; opacity: 0.5;" disabled'; ?>>
                                                             <i class="fa fa-trash me-1"></i> Revoke
                                                         </a>
                                                     </div>
@@ -227,6 +227,7 @@ $result = mysqli_query($db, $query);
     <script src="js/waves.js"></script>
     <script src="js/sidebarmenu.js"></script>
     <script src="js/custom.js"></script>
+    <script src="../acms-core.js"></script>
     <?php include 'includes/current_dateTime.php'; ?>
 </body>
 </html>

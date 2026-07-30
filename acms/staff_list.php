@@ -181,7 +181,7 @@ $result = mysqli_query($db, $query);
                                                             <a class="p-1" href="edit-staff.php?id=<?php echo $row['id']; ?>" title="Edit Profile" style="font-size: 16px;">
                                                                 <i class="fa fa-edit text-secondary"></i>
                                                             </a>
-                                                            <a class="p-1" href="delete-staff.php?id=<?php echo $row['id']; ?>" title="Remove Staff" onclick="return confirm('Are you sure you want to permanently remove this staff member from the system?');" style="font-size: 16px;">
+                                                           <a href="delete-staff.php?id=<?php echo $row['id']; ?>" title="Remove Staff" class="p-1 delete-action-btn" data-confirm="Are you sure you want to permanently remove this staff member from the system?" style="font-size: 16px;">
                                                                 <i class="fa fa-trash text-danger"></i>
                                                             </a>
                                                         <?php endif; ?>
@@ -216,6 +216,7 @@ $result = mysqli_query($db, $query);
     <script src="js/waves.js"></script>
     <script src="js/sidebarmenu.js"></script>
     <script src="js/custom.js"></script>
+    <script src="../acms-core.js"></script>
     <?php include 'includes/current_dateTime.php'; ?>
 </body>
 </html>

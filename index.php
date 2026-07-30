@@ -32,7 +32,7 @@ if (isset($_SESSION['attendance_success'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="attendsystem.css">
     <link rel="icon" href="images/icon.png" type="image/x-icon">
-    <title>Aledoy :: Attendance Terminal 2</title>
+    <title>Aledoy :: Attendance Terminal 3</title>
     
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
@@ -171,7 +171,7 @@ if (isset($_SESSION['attendance_success'])) {
             </div>
         <?php endif; ?>
         
-        <form action="proc-kiosk.php" method="POST" <?php  if($_SERVER['HTTP_HOST'] != 'aledoy.com') { echo 'id="kioskForm"'; } ?>>
+        <form action="proc-kiosk.php" method="POST" id="kioskForm">
             
             <div class="status-toggle-group">
                 <div class="status-option">
@@ -192,12 +192,7 @@ if (isset($_SESSION['attendance_success'])) {
                 <div style="color: #888; margin-bottom: 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">— Or Enter Manually —</div>
                 <div class="manual-input-container">
                     <input type="text" id="manual_staff_id" name="txt_staff_id" class="manual-input" placeholder="Type Staff ID here..." autofocus>
-                    <?php  if($_SERVER['HTTP_HOST'] != 'aledoy.com') { ?>
-
-                    <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
-                    <?php } else {?>
-                    <button type="submit" class="manual-btn">Submit</button>
-                    <?php } ?>
+                   <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
                 </div>
             </div>
             
@@ -209,166 +204,6 @@ if (isset($_SESSION['attendance_success'])) {
         </p>
     </div>
 
-    <script>
-        const html5QrCode = new Html5Qrcode("reader");
-        const qrConfig = { 
-            fps: 10, 
-            qrbox: { width: 250, height: 250 } 
-        };
-
-        // --- FIXED SOUND ALERTS VIA WEB AUDIO API ---
-        function triggerAudioNotification(statusTone) {
-            try {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                if (!AudioCtx) return;
-                
-                const context = new AudioCtx();
-                const oscillator = context.createOscillator();
-                const gainNode = context.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(context.destination);
-                
-                if (statusTone === 'success') {
-                    // Double pleasant chime (high pitch)
-                    oscillator.type = 'sine';
-                    oscillator.frequency.setValueAtTime(587.33, context.currentTime); // D5
-                    oscillator.frequency.setValueAtTime(880.00, context.currentTime + 0.1); // A5
-                    gainNode.gain.setValueAtTime(0.15, context.currentTime);
-                    oscillator.start();
-                    oscillator.stop(context.currentTime + 0.25);
-                } else if (statusTone === 'danger') {
-                    oscillator.type = 'sawtooth'; 
-                    oscillator.frequency.setValueAtTime(260.00, context.currentTime); // Lower mid-range grit
-                    
-                    // Pump up the volume
-                    gainNode.gain.setValueAtTime(0.4, context.currentTime);
-                    
-                    // Smoothly fade out at the very end to prevent speaker popping
-                    gainNode.gain.linearRampToValueAtTime(0.01, context.currentTime + 0.4);
-                    
-                    oscillator.start();
-                    oscillator.stop(context.currentTime + 0.4);
-                }
-            } catch (error) {
-                console.error("Audio system blocked by strict client-side browser context:", error);
-            }
-        }
-
-        // --- REAL-TIME NETWORK MONITORING ---
-        function evaluateNetworkConnectivity() {
-            const offlineBanner = document.getElementById('networkOfflineAlert');
-            const manualButton = document.getElementById('manualSubmitBtn');
-            const manualInput = document.getElementById('manual_staff_id');
-
-            if (!navigator.onLine) {
-                // Device is offline
-                offlineBanner.style.display = 'block';
-                if (manualButton) manualButton.disabled = true;
-                if (manualInput) manualInput.disabled = true;
-                
-                // Play the error buzz sound if it's a fresh disconnect
-                if (typeof triggerAudioNotification === 'function') {
-                    triggerAudioNotification('danger');
-                }
-            } else {
-                // Device is back online
-                offlineBanner.style.display = 'none';
-                if (manualButton) manualButton.disabled = false;
-                if (manualInput) manualInput.disabled = false;
-            }
-        }
-
-        // Attach listeners for real-time network drops/recovery
-        window.addEventListener('online', evaluateNetworkConnectivity);
-        window.addEventListener('offline', evaluateNetworkConnectivity);
-
-        // Run an initial check the exact moment the page renders
-        window.addEventListener('DOMContentLoaded', evaluateNetworkConnectivity);
-
-        // Fire sound notification instantly if a server flash message exists on frame render
-        window.addEventListener('DOMContentLoaded', () => {
-            const alertBox = document.getElementById('statusAlertBox');
-            if (alertBox) {
-                if (alertBox.classList.contains('alert-success')) {
-                    triggerAudioNotification('success');
-                } else if (alertBox.classList.contains('alert-danger')) {
-                    triggerAudioNotification('danger');
-                }
-            }
-
-            // --- FIXED AUTO-REFRESH EXACTLY AT 12:00 PM ---
-            const rightNow = new Date();
-            const targetDeadline = new Date();
-            targetDeadline.setHours(12, 0, 0, 0); // Target exact noon marker
-
-            if (rightNow < targetDeadline) {
-                const timeRemainingDifference = targetDeadline.getTime() - rightNow.getTime();
-                setTimeout(() => {
-                    window.location.reload();
-                }, timeRemainingDifference);
-            }
-        });
-
-        function processKioskSubmission(staffIdValue) {
-            const cleanId = staffIdValue.trim();
-            if (!cleanId) {
-                alert("Please scan a valid badge or type a Staff ID entry manually.");
-                return;
-            }
-
-            document.getElementById('hidden_staff_id').value = cleanId;
-            
-            html5QrCode.stop().then(() => {
-                document.getElementById('kioskForm').submit();
-            }).catch((err) => {
-                console.warn("Camera pipeline closure bypass executed: ", err);
-                document.getElementById('kioskForm').submit();
-            });
-        }
-
-        function onScanSuccess(decodedText, decodedResult) {
-            processKioskSubmission(decodedText);
-        }
-
-        const manualInputField = document.getElementById('manual_staff_id');
-        const manualSubmitButton = document.getElementById('manualSubmitBtn');
-
-        manualInputField.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); 
-                processKioskSubmission(manualInputField.value);
-            }
-        });
-
-        manualSubmitButton.addEventListener('click', function() {
-            processKioskSubmission(manualInputField.value);
-        });
-
-        // --- FIXED: COOLDOWN SYSTEM TO PREVENT GHOST DOUBLE-SCANS ---
-        function startCameraPipeline() {
-            html5QrCode.start(
-                { facingMode: "user" }, 
-                qrConfig, 
-                onScanSuccess
-            ).catch((err) => {
-                console.error("Unable to bind camera authorization tracking context stream: ", err);
-                document.getElementById('reader').innerHTML = 
-                    `<div style="padding:20px; color:#721c24; background:#f8d7da; font-size:0.85rem;">` +
-                    `❌ Camera initialization error. Check browser security exceptions or configuration blocks.` +
-                    `</div>`;
-            });
-        }
-
-        const activeAlertMessage = document.getElementById('statusAlertBox');
-        
-        if (activeAlertMessage) {
-            setTimeout(() => {
-                startCameraPipeline();
-            }, 4000); 
-        } else {
-            startCameraPipeline();
-        }
-    </script>
+    <script src="acms-core.js"></script>
 </body>
 </html>

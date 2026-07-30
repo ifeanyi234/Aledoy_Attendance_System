@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $current_date = date('Y-m-d');
     $current_time = date('H:i:s');
 
-    $clock_in_deadline = "14:00:00"; 
+    $clock_in_deadline = "12:00:00"; 
     $clock_out_start   = "14:00:00";
 
     // Verify the scanned staff profile exists

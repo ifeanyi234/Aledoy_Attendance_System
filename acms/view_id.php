@@ -310,7 +310,7 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
             <a href="staff_list.php" class="btn btn-outline-secondary btn-sm fw-bold px-3">
                 <i class="fa fa-arrow-left me-1"></i> Return to Directory
             </a>
-            <button onclick="window.print();" class="btn btn-sm text-white fw-bold px-4" style="background-color: #2F323E;">
+            <button id="printBadgeBtn" class="btn btn-sm text-white fw-bold px-4" style="background-color: #2F323E;">
                 <i class="fa fa-print me-1"></i> Print Double-Sided Card
             </button>
         </div>
@@ -395,6 +395,6 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
         </div>
 
     </div>
-
+<script src="../acms-core.js"></script>
 </body>
 </html>

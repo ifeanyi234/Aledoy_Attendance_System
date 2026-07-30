@@ -211,7 +211,7 @@ $result = mysqli_query($db, $query);
                                                 
                                                 <?php if ($is_main_admin): ?>
                                                     <td class="text-center">
-                                                        <a style="font-size: 20px;" href="delete-attendance.php?id=<?php echo $row['id']; ?>" title="Delete Entry" onclick="return confirm('Are you sure you want to permanently erase this logs transaction?');">
+                                                        <a style="font-size: 20px;" href="delete-attendance.php?id=<?php echo $row['id']; ?>" title="Delete Entry" class="delete-action-btn" data-confirm="Are you sure you want to permanently erase this logs transaction?">
                                                             <i class="fa fa-trash text-danger"></i>
                                                         </a>
                                                     </td>
@@ -236,6 +236,7 @@ $result = mysqli_query($db, $query);
     <script src="js/waves.js"></script>
     <script src="js/sidebarmenu.js"></script>
     <script src="js/custom.js"></script>
+    <script src="../acms-core.js"></script>
     <?php include(__DIR__ . '/includes/current_dateTime.php'); ?>
 </body>
 </html>
