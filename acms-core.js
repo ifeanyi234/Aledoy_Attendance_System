@@ -1,7 +1,88 @@
 /**
  * ACMS Core Application Script
- * Externalized event listeners, PDF generation, & kiosk scanner logic
+ * Externalized event listeners, PDF generation, kiosk scanner logic, & GPS Geofencing
  */
+
+// Global Geofencing Configuration for Abbey Mortgage Bank Building, Okota Road, Lagos
+const ACMS_GEOFENCE = {
+  OFFICE_LAT: 6.5198972285145596,
+  OFFICE_LNG: 3.3180273545580072,
+  MAX_RADIUS_METERS: 75, // 75m allowance for indoor GPS drift
+};
+
+/**
+ * Calculates straight-line distance between two coordinates in meters (Haversine Formula)
+ */
+function calculateDistanceMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371e3; // Earth radius in meters
+  const rad = Math.PI / 180;
+  const dLat = (lat2 - lat1) * rad;
+  const dLon = (lon2 - lon1) * rad;
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * rad) *
+      Math.cos(lat2 * rad) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+/**
+ * Verifies staff browser position before processing clock-in logic
+ */
+function verifyOnSiteLocation(onSuccessCallback, onErrorCallback) {
+  if (!navigator.geolocation) {
+    alert(
+      "Browser geolocation is required to verify attendance location, but it is not supported by your browser.",
+    );
+    if (onErrorCallback) onErrorCallback();
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const userLat = position.coords.latitude;
+      const userLng = position.coords.longitude;
+      const distance = calculateDistanceMeters(
+        ACMS_GEOFENCE.OFFICE_LAT,
+        ACMS_GEOFENCE.OFFICE_LNG,
+        userLat,
+        userLng,
+      );
+
+      if (distance <= ACMS_GEOFENCE.MAX_RADIUS_METERS) {
+        onSuccessCallback(userLat, userLng);
+      } else {
+        const roundedDist = Math.round(distance);
+        alert(
+          `Clock-in Denied: You are ${roundedDist} meters away from the office. You must be on-site at Okota Road to clock in.`,
+        );
+        if (onErrorCallback) onErrorCallback();
+      }
+    },
+    (error) => {
+      let msg = "Unable to verify location.";
+      if (error.code === error.PERMISSION_DENIED) {
+        msg =
+          "Location permission denied. Please enable location access in browser settings to clock in.";
+      } else if (error.code === error.POSITION_UNAVAILABLE) {
+        msg = "Location details unavailable. Please enable device GPS.";
+      } else if (error.code === error.TIMEOUT) {
+        msg = "Location verification timed out. Please try again.";
+      }
+      alert(msg);
+      if (onErrorCallback) onErrorCallback();
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
+    },
+  );
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================================================
@@ -193,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Submission Handler
+    // Submission Handler Intercepted with Location Verification
     function processKioskSubmission(staffIdValue) {
       const cleanId = staffIdValue.trim();
       if (!cleanId) {
@@ -201,23 +282,56 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const hiddenField = document.getElementById("hidden_staff_id");
-      if (hiddenField) hiddenField.value = cleanId;
+      // Verify location before proceeding with form submission
+      verifyOnSiteLocation(
+        (lat, lng) => {
+          const hiddenField = document.getElementById("hidden_staff_id");
+          if (hiddenField) hiddenField.value = cleanId;
 
-      if (isCameraScanning) {
-        html5QrCode
-          .stop()
-          .then(() => {
-            isCameraScanning = false;
+          // Append latitude and longitude inputs dynamically if not present
+          let latInput = document.getElementById("hidden_user_lat");
+          let lngInput = document.getElementById("hidden_user_lng");
+
+          if (!latInput) {
+            latInput = document.createElement("input");
+            latInput.type = "hidden";
+            latInput.id = "hidden_user_lat";
+            latInput.name = "latitude";
+            kioskForm.appendChild(latInput);
+          }
+          if (!lngInput) {
+            lngInput = document.createElement("input");
+            lngInput.type = "hidden";
+            lngInput.id = "hidden_user_lng";
+            lngInput.name = "longitude";
+            kioskForm.appendChild(lngInput);
+          }
+
+          latInput.value = lat;
+          lngInput.value = lng;
+
+          if (isCameraScanning) {
+            html5QrCode
+              .stop()
+              .then(() => {
+                isCameraScanning = false;
+                kioskForm.submit();
+              })
+              .catch((err) => {
+                console.warn("Camera pipeline closure bypass executed: ", err);
+                kioskForm.submit();
+              });
+          } else {
             kioskForm.submit();
-          })
-          .catch((err) => {
-            console.warn("Camera pipeline closure bypass executed: ", err);
-            kioskForm.submit();
-          });
-      } else {
-        kioskForm.submit();
-      }
+          }
+        },
+        () => {
+          // If location verification fails/denied, resume scanning stream
+          if (isCameraScanning && html5QrCode.isPaused) {
+            html5QrCode.resume();
+          }
+        },
+      );
     }
 
     function onScanSuccess(decodedText) {
