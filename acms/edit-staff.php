@@ -208,6 +208,7 @@ $phone_digits = preg_replace('/[^0-9]/', '', $phone_digits);
     <script src="js/waves.js"></script>
     <script src="js/sidebarmenu.js"></script>
     <script src="js/custom.js"></script>
+    <script src="../acms-core.js"></script>
     <?php include 'includes/current_dateTime.php'; ?>
 </body>
 </html>

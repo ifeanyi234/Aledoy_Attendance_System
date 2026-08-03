@@ -253,7 +253,7 @@ $recent_activities = mysqli_query($db, $activity_query);
     <script src="js/waves.js"></script>
     <script src="js/sidebarmenu.js"></script>
     <script src="js/custom.js"></script>
-    
+    <script src="../acms-core.js"></script>
     <?php include 'includes/current_dateTime.php'; ?>
 </body>
 </html>
