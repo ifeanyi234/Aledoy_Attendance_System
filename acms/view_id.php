@@ -69,7 +69,7 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
         
         /* Action Bar Controller Wrapper */
         .control-panel-wrapper {
-            max-width: 700px;
+            max-width: 900px;
             margin: 30px auto 10px auto;
         }
 
@@ -237,27 +237,12 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
             padding-bottom: 20px;
         }
         .badge-qr-matrix {
-            /* width: 120px;
-            height: 120px; */
-            width:75%;
+            width: 75%;
             padding: 6px;
             border: 1px solid #cbd5e0;
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-        }
-
-        .signature-block {
-            margin-top: 20px;
-            border-top: 1px dashed #a0aec0;
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 4px;
-            font-size: 9px;
-            color: #718096;
-            font-weight: 600;
-            text-transform: uppercase;
         }
 
         .badge-system-footer-text {
@@ -310,9 +295,18 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
             <a href="staff_list.php" class="btn btn-outline-secondary btn-sm fw-bold px-3">
                 <i class="fa fa-arrow-left me-1"></i> Return to Directory
             </a>
-            <button id="printBadgeBtn" class="btn btn-sm text-white fw-bold px-4" style="background-color: #2F323E;">
-                <i class="fa fa-print me-1"></i> Print Double-Sided Card
-            </button>
+
+            <div class="d-flex gap-2">
+                <!-- DOWNLOAD PDF BUTTON -->
+                <button id="downloadPdfBtn" class="btn btn-sm btn-danger fw-bold px-3">
+                    <i class="fa fa-file-pdf-o me-1"></i> Download PDF
+                </button>
+
+                <!-- PRINT BUTTON -->
+                <button id="printBadgeBtn" class="btn btn-sm text-white fw-bold px-3" style="background-color: #2F323E;">
+                    <i class="fa fa-print me-1"></i> Print Double-Sided Card
+                </button>
+            </div>
         </div>
     </div>
 
@@ -352,7 +346,7 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
                         </div>
                     </div>
                 </div>
-                <div class="company-logo"><img src="../acms/images/logo.png" alt="Company Logo" style="margin-top: 30px;"> </div>
+                <div class="company-logo"><img src="../acms/images/logo.png" alt="Company Logo" style="margin-top: 30px;"></div>
             </div>
 
             <div class="badge-system-footer-text">
@@ -370,8 +364,6 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
                 
                 <ul class="terms-list">
                     <li>This card is the official property of Aledoy Solution Limited and must be worn conspicuously while on institutional premises.</li>
-                    <!-- <li>The access token and embedded matrix elements are unique to the assignee and are strictly non-transferable.</li>
-                    <li>Loss or displacement of this identification badge asset must be reported to the security/HR department immediately.</li> -->
                     <li>If discovered or found outside company domains, please return directly to the address below.</li>
                 </ul>
 
@@ -383,10 +375,6 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
                         <div class="text-danger small fw-bold py-4">Matrix Block Uncompiled</div>
                     <?php endif; ?>
                 </div>
-
-                <!-- <div class="signature-block">
-                    Authorized Signatory
-                </div> -->
             </div>
 
             <div class="badge-system-footer-text">
@@ -395,6 +383,11 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
         </div>
 
     </div>
-<script src="../acms-core.js"></script>
+
+    <!-- Client-side html2pdf Bundle Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Core ACMS application logic -->
+    <script src="../acms-core.js?v=1.0.3"></script>
 </body>
 </html>

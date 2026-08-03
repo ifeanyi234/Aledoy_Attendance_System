@@ -1,6 +1,6 @@
 /**
  * ACMS Core Application Script
- * Externalized event listeners & kiosk scanner logic
+ * Externalized event listeners, PDF generation, & kiosk scanner logic
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,13 +29,73 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
-       2. DOUBLE-SIDED ID CARD PRINTING
+       2. DOUBLE-SIDED ID CARD PRINTING & PDF DOWNLOAD ENGINE
        ========================================================================== */
   const printBtn = document.getElementById("printBadgeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", (e) => {
       e.preventDefault();
       window.print();
+    });
+  }
+
+  const pdfBtn = document.getElementById("downloadPdfBtn");
+  if (pdfBtn) {
+    pdfBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (typeof html2pdf === "undefined") {
+        alert(
+          "PDF generator library is loading. Please try again in a moment.",
+        );
+        return;
+      }
+
+      const badgeElement = document.querySelector(".badge-print-container");
+      if (!badgeElement) {
+        alert("Badge container element not found.");
+        return;
+      }
+
+      const staffNameElem = document.querySelector(".staff-fullname");
+      const staffName = staffNameElem
+        ? staffNameElem.textContent.trim().replace(/\s+/g, "_")
+        : "Staff_Badge";
+
+      const opt = {
+        margin: 8,
+        filename: `${staffName}_ID_Badge.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+        },
+        jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+      };
+
+      const originalText = pdfBtn.innerHTML;
+      pdfBtn.disabled = true;
+      pdfBtn.innerHTML =
+        '<i class="fa fa-spinner fa-spin me-1"></i> Generating PDF...';
+
+      html2pdf()
+        .set(opt)
+        .from(badgeElement)
+        .save()
+        .then(() => {
+          pdfBtn.disabled = false;
+          pdfBtn.innerHTML = originalText;
+        })
+        .catch((err) => {
+          console.error("PDF generation error:", err);
+          pdfBtn.disabled = false;
+          pdfBtn.innerHTML = originalText;
+          alert(
+            "Could not generate PDF directly. You can click 'Print' and select 'Save as PDF'.",
+          );
+        });
     });
   }
 
@@ -63,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (kioskForm && readerElem && typeof Html5Qrcode !== "undefined") {
     const html5QrCode = new Html5Qrcode("reader");
     const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
-    let isCameraScanning = false; // State tracker to prevent crashing when camera is inactive
+    let isCameraScanning = false;
 
     // Web Audio API Tones
     function triggerAudioNotification(statusTone) {
@@ -133,19 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Auto-refresh timer exactly at Noon
-    const rightNow = new Date();
-    const targetDeadline = new Date();
-    targetDeadline.setHours(12, 0, 0, 0);
-
-    if (rightNow < targetDeadline) {
-      const timeRemainingDifference =
-        targetDeadline.getTime() - rightNow.getTime();
-      setTimeout(() => {
-        window.location.reload();
-      }, timeRemainingDifference);
-    }
-
     // Submission Handler
     function processKioskSubmission(staffIdValue) {
       const cleanId = staffIdValue.trim();
@@ -157,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const hiddenField = document.getElementById("hidden_staff_id");
       if (hiddenField) hiddenField.value = cleanId;
 
-      // Only stop camera if it was actually running; otherwise submit immediately
       if (isCameraScanning) {
         html5QrCode
           .stop()
@@ -196,17 +242,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Initialize Camera Pipeline with fallbacks
-    // Universal Camera Pipeline (Works on Laptops, Desktops, & Mobile)
+    // Universal Camera Initialization Engine (Handles Laptops & Mobile)
     function startCameraPipeline() {
-      Html5Qrcode.getCameras()
-        .then((devices) => {
-          if (devices && devices.length > 0) {
-            // Grab the first available camera device (Built-in Webcam / Phone Camera)
-            const cameraId = devices[0].id;
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Step 1: Force laptop browser hardware prompt
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((stream) => {
+            // Release pre-flight stream so html5QrCode gets access
+            stream.getTracks().forEach((track) => track.stop());
 
+            // Step 2: Launch scanner
             html5QrCode
-              .start(cameraId, qrConfig, onScanSuccess)
+              .start({ facingMode: "environment" }, qrConfig, onScanSuccess)
+              .catch(() => {
+                return html5QrCode.start(
+                  { facingMode: "user" },
+                  qrConfig,
+                  onScanSuccess,
+                );
+              })
               .then(() => {
                 isCameraScanning = true;
               })
@@ -214,34 +269,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Camera start error:", err);
                 isCameraScanning = false;
                 showCameraFallback(
-                  "📷 Unable to initialize camera hardware. Use manual entry below.",
+                  "📷 Unable to start camera hardware. Use manual entry below.",
                 );
               });
-          } else {
+          })
+          .catch((err) => {
+            console.error("MediaDevices permission error:", err);
+            isCameraScanning = false;
             showCameraFallback(
-              "📷 No webcam or camera device found on this system.",
+              "📷 Camera access denied or blocked by browser settings. Use manual entry below.",
             );
-          }
-        })
-        .catch((err) => {
-          console.warn(
-            "Device enumeration restricted, trying fallback constraint...",
-            err,
-          );
-          // Fallback attempt if browser restricts device enumeration before prompt
-          html5QrCode
-            .start({ facingMode: "user" }, qrConfig, onScanSuccess)
-            .then(() => {
-              isCameraScanning = true;
-            })
-            .catch((fallbackErr) => {
-              isCameraScanning = false;
-              console.error("Camera authorization failed: ", fallbackErr);
-              showCameraFallback(
-                "📷 Camera access denied or blocked by browser. Use manual entry below.",
-              );
-            });
-        });
+          });
+      } else {
+        showCameraFallback(
+          "📷 Web Camera API is not supported in this browser.",
+        );
+      }
     }
 
     function showCameraFallback(messageText) {
