@@ -3,9 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Override server-level security policy before ANY output is generated
-header("Permissions-Policy: camera=(self), camera=*");
-header("Feature-Policy: camera 'self' *");
+// Replace any existing server permission headers
+header("Permissions-Policy: camera=(self)", true);
 
 require_once __DIR__ . '/acms/connection/connect.php';
 

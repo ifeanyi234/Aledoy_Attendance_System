@@ -1,0 +1,8 @@
+<IfModule mod_headers.c>
+    # Strip any default hosting server restriction
+    Header unset Permissions-Policy
+    Header unset Feature-Policy
+    
+    # Explicitly permit camera access for this domain
+    Header set Permissions-Policy "camera=(self)"
+</IfModule>
