@@ -385,7 +385,7 @@ if ($staff_type_clean === 'main' || $staff_type_clean === 'admin') {
     </div>
 
     <!-- Client-side html2pdf Bundle Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/html2pdf.bundle.min.js"></script>
 
     <!-- Core ACMS application logic -->
     <script src="../acms-core.js?v=1.0.3"></script>
