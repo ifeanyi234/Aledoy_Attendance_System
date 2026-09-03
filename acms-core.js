@@ -205,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const html5QrCode = new Html5Qrcode("reader");
     const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
     let isCameraScanning = false;
+    let isSubmissionInProgress = false;
 
     // Web Audio API Tones
     function triggerAudioNotification(statusTone) {
@@ -276,11 +277,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Submission Handler Intercepted with Location Verification
     function processKioskSubmission(staffIdValue) {
-      const cleanId = staffIdValue.trim();
+      if (isSubmissionInProgress) return;
+
+      // Hardware scanners may append Enter, Tab, or other control characters.
+      const cleanId = String(staffIdValue || "")
+        .replace(/[\r\n\t]+$/g, "")
+        .trim();
       if (!cleanId) {
         alert("Please scan a valid badge or type a Staff ID entry manually.");
         return;
       }
+      if (cleanId.length > 12) {
+        alert("Staff ID must be 12 characters or fewer.");
+        return;
+      }
+
+      isSubmissionInProgress = true;
 
       // Verify location before proceeding with form submission
       verifyOnSiteLocation(
@@ -326,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         },
         () => {
+          isSubmissionInProgress = false;
           // If location verification fails/denied, resume scanning stream
           if (isCameraScanning && html5QrCode.isPaused) {
             html5QrCode.resume();

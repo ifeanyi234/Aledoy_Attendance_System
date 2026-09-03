@@ -192,7 +192,7 @@ if (isset($_SESSION['attendance_success'])) {
             <div class="manual-entry-box">
                 <div style="color: #888; margin-bottom: 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">— Or Enter Manually —</div>
                 <div class="manual-input-container">
-                    <input type="text" id="manual_staff_id" name="txt_staff_id" class="manual-input" placeholder="Type Staff ID here..." autofocus>
+                    <input type="text" id="manual_staff_id" name="txt_staff_id" class="manual-input" placeholder="Type Staff ID here..." maxlength="12" autocomplete="off" autofocus>
                     <button type="button" id="manualSubmitBtn" class="manual-btn">Submit</button>
                 </div>
             </div>

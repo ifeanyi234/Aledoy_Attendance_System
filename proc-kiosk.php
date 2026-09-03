@@ -7,17 +7,26 @@ require_once 'acms/connection/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $staff_id = isset($_POST['staff_id']) ? mysqli_real_escape_string($db, trim($_POST['staff_id'])) : '';
+    $staff_id = isset($_POST['staff_id']) ? trim($_POST['staff_id']) : '';
     $status   = isset($_POST['status']) ? mysqli_real_escape_string($db, trim($_POST['status'])) : 'check-in';
 
     if (!in_array($status, ['check-in', 'check-out'])) {
         $status = 'check-in';
     }
 
-    if($_POST['txt_staff_id'])
-        {
-            $staff_id = mysqli_real_escape_string($db, trim($_POST['txt_staff_id']));
-        }
+    if (!empty($_POST['txt_staff_id'])) {
+        $staff_id = trim($_POST['txt_staff_id']);
+    }
+
+    // Keep scanner suffixes and oversized values out of attendance queries.
+    $staff_id = preg_replace('/[\r\n\t]+$/', '', $staff_id);
+    $staff_id = trim($staff_id);
+    if (strlen($staff_id) > 12) {
+        $_SESSION['attendance_error'] = "Scan error: Staff ID must be 12 characters or fewer.";
+        header("Location: index.php");
+        exit;
+    }
+    $staff_id = mysqli_real_escape_string($db, $staff_id);
 
     if (empty($staff_id)) {
         $_SESSION['attendance_error'] = "Scan error: No valid ID data detected.";
