@@ -369,6 +369,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    let scannerBuffer = "";
+    let scannerLastKeyTime = 0;
+    const scannerKeyInterval = 100;
+
+    document.addEventListener("keydown", function (event) {
+      if (event.target === manualInputField || isSubmissionInProgress) return;
+
+      const now = Date.now();
+      if (now - scannerLastKeyTime > scannerKeyInterval) {
+        scannerBuffer = "";
+      }
+
+      if (event.key === "Enter" || event.key === "Tab") {
+        if (scannerBuffer) {
+          event.preventDefault();
+          const scannedId = scannerBuffer;
+          scannerBuffer = "";
+          scannerLastKeyTime = 0;
+          processKioskSubmission(scannedId);
+        }
+        return;
+      }
+
+      if (event.key.length === 1) {
+        scannerBuffer += event.key;
+        scannerLastKeyTime = now;
+      }
+    });
+
     // Universal Camera Initialization Engine (Handles Laptops & Mobile)
     function startCameraPipeline() {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
