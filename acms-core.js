@@ -361,6 +361,21 @@ document.addEventListener("DOMContentLoaded", () => {
           processKioskSubmission(manualInputField.value);
         }
       });
+
+      manualInputField.addEventListener("blur", function () {
+        setTimeout(() => {
+          if (
+            !isSubmissionInProgress &&
+            document.visibilityState === "visible"
+          ) {
+            manualInputField.focus();
+          }
+        }, 0);
+      });
+
+      window.addEventListener("focus", function () {
+        if (!isSubmissionInProgress) manualInputField.focus();
+      });
     }
 
     if (manualSubmitButton) {
