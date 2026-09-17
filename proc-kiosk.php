@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $current_date = date('Y-m-d');
     $current_time = date('H:i:s');
 
-    $clock_in_deadline = "12:00:00"; 
-    $clock_out_start   = "14:00:00";
+    // $clock_in_deadline = "12:00:00"; 
+    $clock_out_start   = "16:00:00";
 
     // Verify the scanned staff profile exists
     $check_staff = "SELECT firstname, lastname FROM staff WHERE staff_id = '$staff_id' LIMIT 1";
@@ -63,13 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($status === 'check-in') {
             // FIXED LAYER: If past 12 PM but BEFORE 10 PM (22:00), deny normal entry. 
-            // If it is past 10 PM, allow night shifts to record but flag them as late.
-            if ($current_time > $clock_in_deadline && $current_time < "22:00:00") {
-                $readable_deadline = date("h:i A", strtotime($clock_in_deadline));
-                $_SESSION['attendance_error'] = "❌ Clock-In Closed: You cannot clock in past $readable_deadline. You are marked late/absent.";
-                header("Location: index.php");
-                exit;
-            }
+            // if ($current_time > $clock_in_deadline && $current_time < "22:00:00") {
+            //     $readable_deadline = date("h:i A", strtotime($clock_in_deadline));
+            //     $_SESSION['attendance_error'] = "❌ Clock-In Closed: You cannot clock in past $readable_deadline. You are marked late/absent.";
+            //     header("Location: index.php");
+            //     exit;
+            // }
 
             if ($has_clocked_in) {
                 $_SESSION['attendance_error'] = "⚠️ Hello $fullname, you have already clocked in for today.";
