@@ -12,8 +12,9 @@ require_once __DIR__ . '/acms/connection/connect.php';
 date_default_timezone_set('Africa/Lagos');
 $current_hour = (int)date('H');
 
-// Auto-switch default selection: 'check-in' before 12 PM, 'check-out' from 12 PM onwards
-$default_status = ($current_hour < 16) ? 'check-in' : 'check-out';
+// Default selection: 'check-in' before 4 PM, 'check-out' from 4 PM onward
+$clock_in_deadline_hour = 16;
+$default_status = ($current_hour < $clock_in_deadline_hour) ? 'check-in' : 'check-out';
 
 $message = '';
 $messageType = '';

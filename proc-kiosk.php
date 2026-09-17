@@ -38,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $current_date = date('Y-m-d');
     $current_time = date('H:i:s');
 
-    // $clock_in_deadline = "12:00:00"; 
+    // Default shift cutoff is 4:00 PM for the kiosk status toggle.
+    // The actual check-in block is intentionally left disabled so staff can still clock in after 12 PM.
+    $clock_in_deadline = "16:00:00";
     $clock_out_start   = "16:00:00";
 
     // Verify the scanned staff profile exists
@@ -62,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($status === 'check-in') {
-            // FIXED LAYER: If past 12 PM but BEFORE 10 PM (22:00), deny normal entry. 
+            // Clock-in restriction intentionally disabled for now.
+            // If a 4 PM cutoff is ever re-enabled, use the same logic below.
             // if ($current_time > $clock_in_deadline && $current_time < "22:00:00") {
             //     $readable_deadline = date("h:i A", strtotime($clock_in_deadline));
             //     $_SESSION['attendance_error'] = "❌ Clock-In Closed: You cannot clock in past $readable_deadline. You are marked late/absent.";
